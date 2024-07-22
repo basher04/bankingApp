@@ -14,6 +14,7 @@ import { sidebarLinks } from '@/constants'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import Footer from './Footer'
   
 
 export default function MobileNev({user}:MobileNavProps) {
@@ -31,7 +32,7 @@ export default function MobileNev({user}:MobileNavProps) {
                     <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1'>
                         Horizon
                     </h1>
-                    </Link>
+                </Link>
                     <div className='mobilenav-sheet'>
                         <SheetClose asChild>
                             <nav className='flex h-full flex-col gap-6 pt-16 text-white'>
@@ -64,6 +65,7 @@ export default function MobileNev({user}:MobileNavProps) {
                                 })}
                             </nav>
                         </SheetClose>
+                        <Footer user={user} type="mobile"/>
                     </div>
                     
             </SheetContent>
