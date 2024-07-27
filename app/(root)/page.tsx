@@ -1,15 +1,26 @@
 import Header from '@/components/Header'
+import RecentTransactions from '@/components/RecentTransactions'
 import RightSidebar from '@/components/RightSidebar'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
+import { getAccount, getAccounts } from '@/lib/actions/bank.actions'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
 
 
 import React from 'react'
 
-export default async function Home() {
-
+export default async function Home({searchParams:{id,page}}:SearchParamProps) {
+  const currentPage = Number(page as string) || 1
   const loggedIn = await getLoggedInUser()
-  console.log(loggedIn)
+  const accounts = await getAccounts({userId:loggedIn.$id})
+
+  if(!accounts) return;
+
+  const accountsData = accounts?.data;
+  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
+
+  const account = await getAccount({appwriteItemId})
+
+
 
   return (
     <section className='home'>
@@ -18,24 +29,29 @@ export default async function Home() {
           <Header
           type="greeting"
           title= 'Welcome,'
-          user= {loggedIn?.name || 'Guest'}
+          user= {loggedIn?.firstName || 'Guest'}
           subtext= ' Access and manage your account and transactions efficiently.'
           />
 
           <TotalBalanceBox
-          accounts={[]}
-          totalBanks={1}
-          totalCurrentBalance ={1234.23}
+          accounts={accountsData}
+          totalBanks={accounts?.totalBanks}
+          totalCurrentBalance ={accounts?.totalCurrentBalance}
           />
         </header>
 
-        recent transactions
+        <RecentTransactions
+        accounts={accountsData}
+        transactions={account?.transactions}
+        appwriteItemId={appwriteItemId}
+        page={currentPage}
+        />
       </div>
 
       <RightSidebar
       user={loggedIn}
-      transactions={[]}
-      banks={[{currentBalance:2345},{currentBalance:59430}]}
+      transactions={account?.transactions}
+      banks={accountsData?.slice(0,2)}
       />
 
     </section>

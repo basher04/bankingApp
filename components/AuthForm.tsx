@@ -61,7 +61,6 @@ export default function AuthForm({type}:{type:string}) {
                     password:data.password
                 })
                 console.log(response)
-                console.log(';alsdjkfasldfasdlkfasdf')
 
                 if(response) router.push('/')
             }
