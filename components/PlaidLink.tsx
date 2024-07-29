@@ -56,6 +56,18 @@ export default function PlaidLink({user , variant}:PlaidLinkProps) {
                 Connect bank
             </p>
         </Button>
+    ):variant === 'link'?(
+        <Button onClick={()=>open()} className='plaidLink-ghost' variant="ghost">
+            <Image
+                src='/icons/plus.svg'
+                width={20}
+                height={20}
+                alt='plus'
+                />
+            <p className=' xl-block text-[16px] font-semibold text-black-2'>
+                add bank
+            </p>
+        </Button>
     ):(
         <Button onClick={()=>open()} className='sidebar-link'>
             <Image 

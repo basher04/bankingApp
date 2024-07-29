@@ -10,7 +10,7 @@ const ibmPlexSerif = IBM_Plex_Serif({subsets: ["latin"] , weight:['400','700'] ,
 export const metadata: Metadata = {
   title: "Horizon",
   description: "Horizon is a modern banking platform for everyone",
-  icons: '/icons/logo.svg'
+  icons: '/icons/logo.png'
 };
 
 export default function RootLayout({
