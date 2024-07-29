@@ -55,7 +55,7 @@ export default function BankCard({account , userName , showBalance = true}:Credi
                     className='absolute top-0 left-0'
                 />
         </Link>
-        {showBalance && <Copy title={account?.shareableId}/>}
+        {showBalance && <Copy font='' title={account?.shareableId}/>}
     </div>
   )
 }

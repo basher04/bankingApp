@@ -13,6 +13,7 @@ import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { signIn, signUp } from '@/lib/actions/user.actions'
 import PlaidLink from './PlaidLink'
+import Copy from './Copy'
 
 export default function AuthForm({type}:{type:string}) {
 
@@ -140,6 +141,20 @@ export default function AuthForm({type}:{type:string}) {
                     {type === 'sign-up' ? 'Sign In' : 'Sign Up'}
                 </Link>
             </footer>
+            <div>
+                {type === 'sign-in' &&  (
+                
+                <div className='flex flex-col align-middle'>
+                    <h2 className=' text-lg'>test acount:</h2>
+                    <div>
+                        <Copy font="xl" title='testEmail@gmail.com'/>
+                    </div>
+                    <div>
+                        <Copy font="xl" title='testPassword'/>
+                    </div>
+                </div>
+                )}
+            </div>
             </>
         )} 
     </section>

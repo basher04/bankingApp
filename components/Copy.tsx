@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Button } from "./ui/button";
 
-const Copy = ({ title }: { title: string }) => {
+const Copy = ({ title,font = 'xs' }: { title: string,font:string }) => {
   const [hasCopied, setHasCopied] = useState(false);
 
   const copyToClipboard = () => {
@@ -22,7 +22,7 @@ const Copy = ({ title }: { title: string }) => {
       variant="secondary"
       onClick={copyToClipboard}
     >
-      <p className="line-clamp-1 w-full max-w-full text-xs font-medium text-black-2">
+      <p className={`line-clamp-1 w-full max-w-full  text-${font} font-medium text-black-2`}>
         {title}
       </p>
 
